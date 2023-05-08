@@ -4,7 +4,7 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons";
 import { Button, Menu, Typography, Layout } from "antd";
 import Main from "./pages/Main";
-import { Profile } from "./pages/Profile";
+import { Profile } from "./pages/Profile/Profile";
 
 
 const { Header } = Layout;

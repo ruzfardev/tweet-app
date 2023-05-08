@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Row, Col, Card, Avatar, Typography, Space } from "antd";
-import { useGlobalState } from "../context/GlobalContext";
+import { useGlobalState } from "../../context/GlobalContext";
 import { useParams } from "react-router-dom";
 import stc from "string-to-color";
+import  EChart from "../../components/Charts/EChart";
+import  Chart from "../../components/Charts/Chart";
 const { Meta } = Card;
 export const Profile = () => {
   const { userName } = useParams();
@@ -14,26 +16,25 @@ export const Profile = () => {
     const user = users?.find((user: any) => user.userName === userName);
     setSelectedUser(user);
   }, [users, userName]);
-  const data = [
-    { year: "1991", value: 3 },
-    { year: "1992", value: 4 },
-    { year: "1993", value: 3.5 },
-    { year: "1994", value: 5 },
-    { year: "1995", value: 4.9 },
-    { year: "1996", value: 6 },
-    { year: "1997", value: 7 },
-    { year: "1998", value: 9 },
-    { year: "1999", value: 13 },
-  ];
-
-  const config = {
-    data,
-    xField: "year",
-    yField: "value",
-    point: {
-      size: 5,
-      shape: "diamond",
+  const option = {
+    title: {
+      text: 'ECharts Getting Started Example'
     },
+    tooltip: {},
+    legend: {
+      data: ['sales']
+    },
+    xAxis: {
+      data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
+    },
+    yAxis: {},
+    series: [
+      {
+        name: 'sales',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }
+    ]
   };
   return (
     <div className="profile">
@@ -128,6 +129,7 @@ export const Profile = () => {
           </Card>
         </Col>
       </Row>
+      <Chart option={option} resize={true} />
     </div>
   );
 };
