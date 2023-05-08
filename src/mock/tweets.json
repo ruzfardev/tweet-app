@@ -1,0 +1,184 @@
+[
+  {
+    "id": "t001",
+    "owner": {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "userName": "@johndoe",
+      "jobPosition": "Software Developer",
+      "avatar": "https://randomuser.me/api/portraits/men/75.jpg"
+    },
+    "content": "Great meeting today with @johndoe and @emily_jones. We made some great progress on the new project.",
+    "timeStamp": "2023-05-03T10:30:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t002",
+    "owner": {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "jobPosition": "Product Manager",
+      "userName": "@janedoe",
+      "avatar": "https://randomuser.me/api/portraits/women/75.jpg"
+    },
+    "content": "Feeling frustrated with the project timeline. Need to discuss with @michael_brown and @william_johnson.",
+    "timeStamp": "2023-05-03T12:45:00Z",
+    "type": "negative"
+  },
+  {
+    "id": "t003",
+    "owner": {
+      "id": 3,
+      "jobPosition": "Data Analyst",
+      "userName": "@davidsmith",
+      "firstName": "David",
+      "lastName": "Smith",
+      "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+    },
+    "content": "Excited to be presenting the new data analysis report to the management tomorrow. Fingers crossed! @jessica_davis @sophia_wilson",
+    "timeStamp": "2023-05-03T15:20:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t004",
+    "owner": {
+      "id": 4,
+      "firstName": "Emily",
+      "lastName": "Jones",
+      "jobPosition": "Data Analyst",
+      "userName": "@williamjohnson",
+      "avatar": "https://randomuser.me/api/portraits/women/76.jpg"
+    },
+    "content": "Just received an email from a satisfied client. Love to hear positive feedback! @olivia_thomas",
+    "timeStamp": "2023-05-03T16:35:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t005",
+    "owner": {
+      "id": 5,
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "jobPosition": "Sales Representative",
+      "userName": "@michaelbrown",
+      "avatar": "https://randomuser.me/api/portraits/men/77.jpg"
+    },
+    "content": "Ugh! Dealing with a difficult client today. Need some inspiration to keep going. @sophia_wilson @jane_doe",
+    "timeStamp": "2023-05-03T18:50:00Z",
+    "type": "negative"
+  },
+  {
+    "id": "t006",
+    "owner": {
+      "id": 6,
+      "firstName": "Jessica",
+      "lastName": "Davis",
+      "jobPosition": "Content Creator",
+      "userName": "@jessicadavis",
+      "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
+    },
+    "content": "Had a great time at the company picnic yesterday. Good to unwind with colleagues outside of work. @david_smith @william_johnson",
+    "timeStamp": "2023-05-04T09:15:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t007",
+    "owner": {
+      "id": 7,
+      "firstName": "Andrew",
+      "lastName": "Wilson",
+      "jobPosition": "Customer Support",
+      "userName": "@andrewwilson",
+      "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+    },
+    "content": "Just finished a meeting with the senior management team. Tough decisions ahead. @jane_doe @emily_jones",
+    "timeStamp": "2023-05-04T11:30:00Z",
+    "type": "negative"
+  },
+  {
+    "id": "t008",
+    "owner": {
+      "id": 8,
+      "firstName": "Olivia",
+      "lastName": "Thomas",
+      "jobPosition": "Social Media Manager",
+      "userName": "@oliviathomas",
+      "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+    },
+    "content": "Excited to launch the new social media campaign next week. Hoping for great engagement! @sophia_wilson @jessica_davis",
+    "timeStamp": "2023-05-04T13:45:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t009",
+    "owner": {
+      "id": 9,
+      "jobPosition": "Software Developer",
+      "userName": "@williamjohnson",
+      "firstName": "William",
+      "lastName": "Johnson",
+      "avatar": "https://randomuser.me/api/portraits/men/79.jpg"
+    },
+    "content": "Had a productive discussion with @michael_brown and @david_smith regarding the new project. Feeling good about the direction we're taking.",
+    "timeStamp": "2023-05-04T16:20:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t010",
+    "owner": {
+      "id": 10,
+      "firstName": "Sophia",
+      "lastName": "Wilson",
+      "jobPosition": "Marketing Manager",
+      "userName": "@sophiawilson",
+      "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
+    },
+    "content": "Feeling stressed out about the upcoming deadline. Need some encouragement to keep going. @jessica_davis @emily_jones",
+    "timeStamp": "2023-05-04T18:35:00Z",
+    "type": "negative"
+  },
+  {
+    "id": "t011",
+    "owner": {
+      "id": 11,
+      "firstName": "John",
+      "lastName": "Doe",
+      "userName": "@johndoe",
+      "jobPosition": "Project Manager",
+      "avatar": "https://randomuser.me/api/portraits/men/75.jpg"
+    },
+    "content": "Just finished a brainstorming session with @william_johnson and @david_smith. Some great ideas for the new project!",
+    "timeStamp": "2023-05-05T09:15:00Z",
+    "type": "positive"
+  },
+  {
+    "id": "t012",
+    "owner": {
+      "id": 12,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "jobPosition": "Product Manager",
+      "userName": "@janedoe",
+      "avatar": "https://randomuser.me/api/portraits/women/75.jpg"
+    },
+    "content": "Feeling overwhelmed with work today. Need some motivation to get through the day. @sophia_wilson @olivia_thomas",
+    "timeStamp": "2023-05-05T11:30:00Z",
+    "type": "negative"
+  },
+  {
+    "id": "t013",
+    "owner": {
+      "id": 13,
+      "firstName": "David",
+      "lastName": "Smith",
+      "jobPosition": "Data Analyst",
+      "userName": "@davidsmith",
+      "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
+    },
+    "content": "Just submitted the data analysis report to the management. Hoping for positive feedback! @jessica_davis @emily_jones",
+    "timeStamp": "2023-05-05T13:45:00Z",
+    "type": "neutral"
+  }
+]
