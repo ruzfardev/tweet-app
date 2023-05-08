@@ -35,7 +35,7 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
             placement="topLeft"
             title={<UserCard user={user} />}
             color={stc(user && user?.firstName + user?.lastName)}
-            arrow={{ pointAtCenter: true }}
+            // arrow={{ pointAtCenter: true }}
           >
             <Text
               style={{
@@ -60,23 +60,23 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
         marginBottom: "1rem",
       }}
     >
-      <Space
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text type="secondary">
-          {new Date(tweet.timeStamp).toLocaleTimeString() +
-            "-" +
-            new Date(tweet.timeStamp).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-        </Text>
-        <Avatar size={40} src={tweet.owner.avatar} />
-      </Space>
+      {/*<Space*/}
+      {/*  style={{*/}
+      {/*    display: "flex",*/}
+      {/*    justifyContent: "space-between",*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <Text type="secondary">*/}
+      {/*    {new Date(tweet.timeStamp).toLocaleTimeString() +*/}
+      {/*      "-" +*/}
+      {/*      new Date(tweet.timeStamp).toLocaleDateString("en-US", {*/}
+      {/*        month: "short",*/}
+      {/*        day: "numeric",*/}
+      {/*        year: "numeric",*/}
+      {/*      })}*/}
+      {/*  </Text>*/}
+      {/*  <Avatar size={40} src={tweet.owner.avatar} />*/}
+      {/*</Space>*/}
       <Text style={{ marginTop: "1rem" }}>
         {renderContent(tweet.content, tweet.owner.id)}
       </Text>

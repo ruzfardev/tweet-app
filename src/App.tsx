@@ -2,10 +2,12 @@ import React from "react";
 import "./App.css";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons";
-import { Header } from "antd/es/layout/layout";
-import { Button, Menu, Typography } from "antd";
+import { Button, Menu, Typography, Layout } from "antd";
 import Main from "./pages/Main";
 import { Profile } from "./pages/Profile";
+
+
+const { Header } = Layout;
 function App() {
   const { pathname } = useLocation();
   return (
@@ -28,7 +30,7 @@ function App() {
             Tweet App
           </Typography.Title>
         ) : (
-          <Button type="link" ghost size="large" icon={<LeftOutlined />}>
+          <Button ghost size="large" icon={<LeftOutlined />}>
             <Link to="/">Back</Link>
           </Button>
         )}

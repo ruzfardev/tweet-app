@@ -14,12 +14,32 @@ export const Profile = () => {
     const user = users?.find((user: any) => user.userName === userName);
     setSelectedUser(user);
   }, [users, userName]);
+  const data = [
+    { year: "1991", value: 3 },
+    { year: "1992", value: 4 },
+    { year: "1993", value: 3.5 },
+    { year: "1994", value: 5 },
+    { year: "1995", value: 4.9 },
+    { year: "1996", value: 6 },
+    { year: "1997", value: 7 },
+    { year: "1998", value: 9 },
+    { year: "1999", value: 13 },
+  ];
 
+  const config = {
+    data,
+    xField: "year",
+    yField: "value",
+    point: {
+      size: 5,
+      shape: "diamond",
+    },
+  };
   return (
     <div className="profile">
       <Row align={"middle"} gutter={[50, 10]}>
         <Col span={18} push={6}>
-          <Row wrap={true} style={{ height: "100%" }} justify="space-between">
+          <Row style={{ height: "100%" }} justify="space-between">
             <Col style={{ textAlign: "center" }} span={4}>
               <Card bordered={false} style={{ width: 200 }}>
                 <Space direction="vertical">
