@@ -37,99 +37,112 @@ export const Profile = () => {
     ]
   };
   return (
-    <div className="profile">
-      <Row align={"middle"} gutter={[50, 10]}>
-        <Col span={18} push={6}>
-          <Row style={{ height: "100%" }} justify="space-between">
-            <Col style={{ textAlign: "center" }} span={4}>
-              <Card bordered={false} style={{ width: 200 }}>
-                <Space direction="vertical">
-                  <Typography.Title level={5} className="margin-0">
-                    Total number of tweets
-                  </Typography.Title>
-                  <Typography.Title level={2} className="margin-0">
-                    1,200
-                  </Typography.Title>
-                </Space>
-              </Card>
-            </Col>
-            <Col style={{ textAlign: "center" }} span={4}>
-              <Card bordered={false} style={{ width: 200 }}>
-                <Space direction="vertical">
-                  <Typography.Title level={5} className="margin-0">
-                    Average number of retweets
-                  </Typography.Title>
-                  <Typography.Title level={2} className="margin-0">
-                    1,200
-                  </Typography.Title>
-                </Space>
-              </Card>
-            </Col>
-            <Col style={{ textAlign: "center" }} span={4}>
-              <Card bordered={false} style={{ width: 200 }}>
-                <Space direction="vertical">
-                  <Typography.Title level={5} className="margin-0">
-                    Average number of likes
-                  </Typography.Title>
-                  <Typography.Title level={2} className="margin-0">
-                    5,200
-                  </Typography.Title>
-                </Space>
-              </Card>
-            </Col>
-            <Col style={{ textAlign: "center" }} span={4}>
-              <Card bordered={false} style={{ width: 200 }}>
-                <Space direction="vertical">
-                  <Typography.Title level={5} className="margin-0">
-                    Average number of replies
-                  </Typography.Title>
-                  <Typography.Title level={2} className="margin-0">
-                    45%
-                  </Typography.Title>
-                </Space>
-              </Card>
-            </Col>
-            <Col style={{ textAlign: "center" }} span={4}>
-              <Card bordered={false} style={{ width: 200 }}>
-                <Space direction="vertical">
-                  <Typography.Title level={5} className="margin-0">
-                    Total number of countries
-                  </Typography.Title>
-                  <Typography.Title level={2} className="margin-0">
-                    115
-                  </Typography.Title>
-                </Space>
-              </Card>
-            </Col>
-          </Row>
+      <>
+      <div className="profile">
+        <Row align={"middle"} gutter={[50, 10]}>
+          <Col span={18} push={6}>
+            <Row style={{ height: "100%" }} justify="space-between">
+              <Col style={{ textAlign: "center" }} span={4}>
+                <Card bordered={false} style={{ width: 200 }}>
+                  <Space direction="vertical">
+                    <Typography.Title level={5} className="margin-0">
+                      Total number of tweets
+                    </Typography.Title>
+                    <Typography.Title level={2} className="margin-0">
+                      1,200
+                    </Typography.Title>
+                  </Space>
+                </Card>
+              </Col>
+              <Col style={{ textAlign: "center" }} span={4}>
+                <Card bordered={false} style={{ width: 200 }}>
+                  <Space direction="vertical">
+                    <Typography.Title level={5} className="margin-0">
+                      Average number of retweets
+                    </Typography.Title>
+                    <Typography.Title level={2} className="margin-0">
+                      1,200
+                    </Typography.Title>
+                  </Space>
+                </Card>
+              </Col>
+              <Col style={{ textAlign: "center" }} span={4}>
+                <Card bordered={false} style={{ width: 200 }}>
+                  <Space direction="vertical">
+                    <Typography.Title level={5} className="margin-0">
+                      Average number of likes
+                    </Typography.Title>
+                    <Typography.Title level={2} className="margin-0">
+                      5,200
+                    </Typography.Title>
+                  </Space>
+                </Card>
+              </Col>
+              <Col style={{ textAlign: "center" }} span={4}>
+                <Card bordered={false} style={{ width: 200 }}>
+                  <Space direction="vertical">
+                    <Typography.Title level={5} className="margin-0">
+                      Average number of replies
+                    </Typography.Title>
+                    <Typography.Title level={2} className="margin-0">
+                      45%
+                    </Typography.Title>
+                  </Space>
+                </Card>
+              </Col>
+              <Col style={{ textAlign: "center" }} span={4}>
+                <Card bordered={false} style={{ width: 200 }}>
+                  <Space direction="vertical">
+                    <Typography.Title level={5} className="margin-0">
+                      Total number of countries
+                    </Typography.Title>
+                    <Typography.Title level={2} className="margin-0">
+                      115
+                    </Typography.Title>
+                  </Space>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={6} pull={18}>
+            <Card
+              bordered={false}
+              style={{
+                background: `linear-gradient(150deg, ${stc(
+                  selectedUser && selectedUser?.firstName + selectedUser?.lastName
+                )} 32%, rgb(255, 255, 255) 20%)`,
+              }}
+              loading={false}
+            >
+              <Meta
+                avatar={
+                  <Avatar
+                    style={{
+                      border: "3px solid white",
+                    }}
+                    size={90}
+                    src={selectedUser?.avatar}
+                  />
+                }
+                title={selectedUser?.firstName + " " + selectedUser?.lastName}
+                description={selectedUser?.jobPosition}
+              />
+            </Card>
+          </Col>
+        </Row></div>
+        <Row
+            gutter={[50, 10]}
+        >
+            <Col span={8}>
+        <Chart/>
         </Col>
-        <Col span={6} pull={18}>
-          <Card
-            bordered={false}
-            style={{
-              background: `linear-gradient(150deg, ${stc(
-                selectedUser && selectedUser?.firstName + selectedUser?.lastName
-              )} 32%, rgb(255, 255, 255) 20%)`,
-            }}
-            loading={false}
-          >
-            <Meta
-              avatar={
-                <Avatar
-                  style={{
-                    border: "3px solid white",
-                  }}
-                  size={90}
-                  src={selectedUser?.avatar}
-                />
-              }
-              title={selectedUser?.firstName + " " + selectedUser?.lastName}
-              description={selectedUser?.jobPosition}
-            />
-          </Card>
+        <Col span={8}>
+        <Chart/>
         </Col>
-      </Row>
-      <Chart option={option} resize={true} />
-    </div>
+        <Col span={8}>
+        <Chart/>
+        </Col>
+        </Row>
+        </>
   );
 };

@@ -1,17 +1,15 @@
 import React, {FC} from "react"
-import {Card} from "antd";
-import { FullscreenOutlined} from "@ant-design/icons";
+import {Button, Card} from "antd";
+import { SettingOutlined} from "@ant-design/icons";
 import EChart from "./EChart";
 
-interface Props {
-    option: any;
-    resize: boolean;
-}
-const Chart:FC<Props> = ({option, resize}) => {
+const Chart:FC = () => {
     return (
-        <Card title="Chart" bordered={false}
-            extra={<FullscreenOutlined />}  >
-            <EChart option={option} resize={resize}/>
+        <Card title="Chart" bordered={true}
+            extra={
+            <Button  shape="circle" icon={<SettingOutlined />} />
+            }  >
+            <EChart/>
         </Card>
     )
 }
