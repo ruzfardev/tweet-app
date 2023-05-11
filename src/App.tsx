@@ -27,7 +27,7 @@ function App() {
             }}
             level={3}
           >
-            Tweet App
+            politweets
           </Typography.Title>
         ) : (
           <Button ghost size="large" icon={<LeftOutlined />}>

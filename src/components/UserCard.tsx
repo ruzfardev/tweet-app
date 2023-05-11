@@ -1,24 +1,16 @@
 import React, { FC } from "react";
 import { Card, Avatar, Typography } from "antd";
-import stc from "string-to-color";
 import { Link } from "react-router-dom";
+import {IPolitician} from "../model/politician.model";
+import {getUserAvatar} from "../helpers";
 interface Props {
-  user:
-    | {
-        id: number;
-        firstName: string;
-        lastName: string;
-        jobPosition: string;
-        userName: string;
-        avatar: string;
-      }
-    | undefined;
+  politician: IPolitician,
   loading?: boolean;
 }
-export const UserCard: FC<Props> = ({ user, loading }) => {
-  return (
+export const UserCard: FC<Props> = ({ politician, loading }) => {
+    return (
     <Link
-      to={`/${user?.userName}`}
+      to={`/${politician?.id}`}
       style={{
         textDecoration: "none",
       }}
@@ -28,22 +20,20 @@ export const UserCard: FC<Props> = ({ user, loading }) => {
         hoverable={true}
         style={{
           textAlign: "center",
-          background: `linear-gradient(${stc(
-            user && user?.firstName + user?.lastName
-          )} 30%, rgb(255, 255, 255) 0%)`,
+          background: `linear-gradient(${politician.color} 30%, rgb(255, 255, 255) 0%)`,
         }}
       >
         <Avatar
           size={110}
-          src={user?.avatar}
+          src={getUserAvatar(politician.id)}
           style={{
             border: "5px solid white",
           }}
         />
         <Typography.Title level={3}>
-          {user?.firstName} {user?.lastName}
+          {politician?.name}
         </Typography.Title>
-        <Typography.Text type="secondary">{user?.jobPosition}</Typography.Text>
+        <Typography.Text type="secondary">{politician?.party}</Typography.Text>
         <div
           style={{
             display: "flex",
@@ -52,11 +42,15 @@ export const UserCard: FC<Props> = ({ user, loading }) => {
           }}
         >
           <div className="">
-            <Typography.Title level={4}>45</Typography.Title>
+            <Typography.Title level={4}>
+                {politician?.interaction}
+            </Typography.Title>
             <span>Tweets</span>
           </div>
           <div className="">
-            <Typography.Title level={4}>58%</Typography.Title>
+            <Typography.Title level={4}>{
+                politician?.approvalRate
+            }</Typography.Title>
             <span>Avg.Approval</span>
           </div>
         </div>

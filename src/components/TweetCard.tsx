@@ -3,40 +3,21 @@ import { Card, Avatar, Typography, Space, Tooltip, Tag } from "antd";
 import { UserCard } from "./UserCard";
 import users from "../mock/users.json";
 import stc from "string-to-color";
+import {ITweet} from "../model/tweet.model";
+import {getSentimentColor, getUserAvatar} from "../helpers";
 const { Text } = Typography;
 
 interface Props {
-  tweet: {
-    id: string;
-    owner: {
-      id?: number;
-      firstName: string;
-      lastName: string;
-      userName: string;
-      jobPosition: string;
-      avatar: string;
-    };
-    content: string;
-    timeStamp: string;
-    type: string;
-  };
+  tweet: ITweet,
   loading?: boolean;
 }
 
 const TweetCard: FC<Props> = ({ tweet, loading }) => {
-  const renderContent = (content: string, userId: number | undefined) => {
+  const renderContent = (content: string, userName: string) => {
     const parts = content.split(" ");
     return parts.map((part, index) => {
       if (part.startsWith("@")) {
-        const user = users.find((user) => user.id === userId);
         return (
-          <Tooltip
-            key={index}
-            placement="topLeft"
-            title={<UserCard user={user} />}
-            color={stc(user && user?.firstName + user?.lastName)}
-            // arrow={{ pointAtCenter: true }}
-          >
             <Text
               style={{
                 color: "#1890ff",
@@ -45,7 +26,6 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
             >
               {" " + part + " "}
             </Text>
-          </Tooltip>
         );
       } else {
         return " " + part + " ";
@@ -60,25 +40,25 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
         marginBottom: "1rem",
       }}
     >
-      {/*<Space*/}
-      {/*  style={{*/}
-      {/*    display: "flex",*/}
-      {/*    justifyContent: "space-between",*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  <Text type="secondary">*/}
-      {/*    {new Date(tweet.timeStamp).toLocaleTimeString() +*/}
-      {/*      "-" +*/}
-      {/*      new Date(tweet.timeStamp).toLocaleDateString("en-US", {*/}
-      {/*        month: "short",*/}
-      {/*        day: "numeric",*/}
-      {/*        year: "numeric",*/}
-      {/*      })}*/}
-      {/*  </Text>*/}
-      {/*  <Avatar size={40} src={tweet.owner.avatar} />*/}
-      {/*</Space>*/}
+      <Space
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text type="secondary">
+          {new Date(tweet.created).toLocaleTimeString() +
+            "-" +
+            new Date(tweet.created).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+        </Text>
+        <Avatar size={40} src={getUserAvatar(tweet.id)} />
+      </Space>
       <Text style={{ marginTop: "1rem" }}>
-        {renderContent(tweet.content, tweet.owner.id)}
+        {renderContent(tweet.text, tweet.id)}
       </Text>
       <p
         style={{
@@ -87,15 +67,9 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
         }}
       >
         <Tag
-          color={
-            tweet.type === "positive"
-              ? "green"
-              : tweet.type === "negative"
-              ? "red"
-              : "blue"
-          }
+          color={getSentimentColor(tweet.sentiment).color}
         >
-          {tweet.type}
+          {getSentimentColor(tweet.sentiment).text}
         </Tag>
       </p>
     </Card>

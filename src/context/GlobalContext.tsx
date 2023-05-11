@@ -5,15 +5,20 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
+import {IPolitician} from "../model/politician.model";
+import {ITweet} from "../model/tweet.model";
 
 export interface GlobalStateInterface {
   selectedUser: any;
-  users: any[];
-  tweets: any[];
+  users: IPolitician[];
+  tweets: ITweet[];
 }
 const GlobalStateContext = createContext({
-  state: {} as Partial<GlobalStateInterface>,
-  setState: {} as Dispatch<SetStateAction<Partial<GlobalStateInterface>>>,
+  users: [] as IPolitician[],
+  tweets: [] as ITweet[],
+  setUsers: {} as Dispatch<SetStateAction<IPolitician[]>>,
+  setTweets: {} as Dispatch<SetStateAction<ITweet[]>>,
+  // setState: {} as Dispatch<SetStateAction<Partial<GlobalStateInterface>>>,
 });
 
 const GlobalStateProvider = ({
@@ -24,12 +29,16 @@ const GlobalStateProvider = ({
   value?: Partial<any>;
 }) => {
   const [state, setState] = useState(value);
-
+  const [users, setUsers] = useState<IPolitician[]>([]);
+    const [tweets, setTweets] = useState<ITweet[]>([]);
   return (
     <GlobalStateContext.Provider
       value={{
-        state,
-        setState,
+        users,
+        tweets,
+        setUsers,
+        setTweets,
+        // setState,
       }}
     >
       {children}

@@ -2,44 +2,35 @@ import React, { useEffect } from "react";
 import { Row, Col, Card, Avatar, Typography, Space } from "antd";
 import { useGlobalState } from "../../context/GlobalContext";
 import { useParams } from "react-router-dom";
-import stc from "string-to-color";
-import  EChart from "../../components/Charts/EChart";
-import  Chart from "../../components/Charts/Chart";
+import Chart from "../../components/Charts/Chart";
+import { ApiService } from "../../service";
+import {convertToLineGraphData, getUserAvatar} from "../../helpers";
+import {ILineGraph} from "../../model/ILineGraph";
+import {IPolitician} from "../../model/politician.model";
+import {LineGraph} from "../../components/Charts/LineGraph";
 const { Meta } = Card;
 export const Profile = () => {
+  const apiService = new ApiService();
   const { userName } = useParams();
-  const { state } = useGlobalState();
-  const { users } = state;
-  const [selectedUser, setSelectedUser] = React.useState<any>(null);
+  const { users } = useGlobalState();
+  const [lineGraphData, setLineGraphData] = React.useState<ILineGraph>();
+  const [selectedUser, setSelectedUser] = React.useState<IPolitician>({} as IPolitician);
 
   useEffect(() => {
-    const user = users?.find((user: any) => user.userName === userName);
+    const user = users.find((user: IPolitician) => user.account === userName);
+    console.log(userName, user);
+    // @ts-ignore
     setSelectedUser(user);
+    // apiService.getLineGraphData().then((res) => {
+    //   setLineGraphData(convertToLineGraphData(res));
+    // });
   }, [users, userName]);
-  const option = {
-    title: {
-      text: 'ECharts Getting Started Example'
-    },
-    tooltip: {},
-    legend: {
-      data: ['sales']
-    },
-    xAxis: {
-      data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
-    },
-    yAxis: {},
-    series: [
-      {
-        name: 'sales',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }
-    ]
-  };
+
   return (
       <>
       <div className="profile">
-        <Row align={"middle"} gutter={[50, 10]}>
+        <Row
+           align={"middle"} gutter={[50, 10]}>
           <Col span={18} push={6}>
             <Row style={{ height: "100%" }} justify="space-between">
               <Col style={{ textAlign: "center" }} span={4}>
@@ -108,40 +99,46 @@ export const Profile = () => {
             <Card
               bordered={false}
               style={{
-                background: `linear-gradient(150deg, ${stc(
-                  selectedUser && selectedUser?.firstName + selectedUser?.lastName
-                )} 32%, rgb(255, 255, 255) 20%)`,
+                background: `linear-gradient(150deg, ${selectedUser?.color} 32%, rgb(255, 255, 255) 20%)`,
               }}
               loading={false}
             >
               <Meta
-                avatar={
-                  <Avatar
-                    style={{
-                      border: "3px solid white",
-                    }}
-                    size={90}
-                    src={selectedUser?.avatar}
-                  />
-                }
-                title={selectedUser?.firstName + " " + selectedUser?.lastName}
-                description={selectedUser?.jobPosition}
+                // avatar={
+                //   // <Avatar
+                //   //   style={{
+                //   //     border: "3px solid white",
+                //   //   }}
+                //   //   size={90}
+                //   //   src={
+                //   //   getUserAvatar(selectedUser?.id)
+                //   // }
+                //   // />
+                // }
+                title={selectedUser?.name}
+                description={selectedUser?.party}
               />
             </Card>
           </Col>
         </Row></div>
         <Row
-            gutter={[50, 10]}
-        >
-            <Col span={8}>
-        <Chart/>
+            style={{
+              backgroundColor: "#e9e9e9",
+              padding: "0 30px",
+            }}
+            justify="center"
+
+            gutter={[50, 10]}>
+            <Col span={24}>
+              <LineGraph />
+              {/*{lineGraphData && <Chart options={lineGraphData}/>}*/}
         </Col>
-        <Col span={8}>
-        <Chart/>
-        </Col>
-        <Col span={8}>
-        <Chart/>
-        </Col>
+        {/*<Col span={8}>*/}
+        {/*/!*<Chart/>*!/*/}
+        {/*</Col>*/}
+        {/*<Col span={8}>*/}
+        {/*/!*<Chart/>*!/*/}
+        {/*</Col>*/}
         </Row>
         </>
   );

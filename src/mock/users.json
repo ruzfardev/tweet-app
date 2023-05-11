@@ -1,82 +1,42 @@
 [
   {
-    "id": 1,
-    "firstName": "John",
-    "lastName": "Doe",
-    "jobPosition": "Software Developer",
-    "userName": "@johndoe",
-    "avatar": "https://randomuser.me/api/portraits/men/75.jpg"
+    "id": "Anwar_Ibrahim",
+    "account": "anwaribrahim",
+    "name": "Anwar Ibrahim",
+    "image": "anwaribrahim.jpg",
+    "color": "#ed1818",
+    "party": "Pakatan Harapan",
+    "interaction": 78,
+    "approvalRate": 65
   },
   {
-    "id": 2,
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "jobPosition": "Product Manager",
-    "userName": "@janedoe",
-    "avatar": "https://randomuser.me/api/portraits/women/75.jpg"
+    "id": "Syed_Saddiq",
+    "account": "SyedSaddiq",
+    "name": "Syed Saddiq",
+    "image": "syedsaddiq.jpg",
+    "color": "#02c3c9",
+    "party": "MUDA",
+    "interaction": 74,
+    "approvalRate": 58
   },
   {
-    "id": 3,
-    "firstName": "William",
-    "lastName": "Johnson",
-    "jobPosition": "Data Analyst",
-    "userName": "@williamjohnson",
-    "avatar": "https://randomuser.me/api/portraits/men/79.jpg"
+    "id": "Muhyiddin_Yassin",
+    "account": "MuhyiddinYassin",
+    "name": "Muhyiddin Yassin",
+    "image": "muhyiddin.jpg",
+    "color": "#1c20fc",
+    "party": "Perikatan Nasional",
+    "interaction": 45,
+    "approvalRate": 38
   },
   {
-    "id": 4,
-    "firstName": "Sophia",
-    "lastName": "Wilson",
-    "jobPosition": "Marketing Manager",
-    "userName": "@sophiawilson",
-    "avatar": "https://randomuser.me/api/portraits/women/79.jpg"
-  },
-  {
-    "id": 5,
-    "firstName": "Michael",
-    "lastName": "Brown",
-    "jobPosition": "Sales Representative",
-    "userName": "@michaelbrown",
-    "avatar": "https://randomuser.me/api/portraits/men/77.jpg"
-  },
-  {
-    "id": 6,
-    "firstName": "Jessica",
-    "lastName": "Davis",
-    "jobPosition": "Content Creator",
-    "userName": "@jessicadavis",
-    "avatar": "https://randomuser.me/api/portraits/women/77.jpg"
-  },
-  {
-    "id": 7,
-    "firstName": "David",
-    "lastName": "Smith",
-    "jobPosition": "Project Manager",
-    "userName": "@davidsmith",
-    "avatar": "https://randomuser.me/api/portraits/men/76.jpg"
-  },
-  {
-    "id": 8,
-    "firstName": "Emily",
-    "lastName": "Jones",
-    "jobPosition": "Graphic Designer",
-    "userName": "@emilyjones",
-    "avatar": "https://randomuser.me/api/portraits/women/76.jpg"
-  },
-  {
-    "id": 9,
-    "firstName": "Olivia",
-    "lastName": "Thomas",
-    "jobPosition": "Social Media Manager",
-    "userName": "@oliviathomas",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
-  },
-  {
-    "id": 10,
-    "firstName": "Andrew",
-    "lastName": "Wilson",
-    "jobPosition": "Customer Support",
-    "userName": "@andrewwilson",
-    "avatar": "https://randomuser.me/api/portraits/men/78.jpg"
+    "id": "Ahmad_Zahid_Hamidi",
+    "account": "DrZahidHamidi",
+    "name": "Ahmad Zahid Hamidi",
+    "image": "zahid.jpg",
+    "color": "#0f0cb0",
+    "party": "Barisan Nasional",
+    "interaction": 42,
+    "approvalRate": 32
   }
 ]

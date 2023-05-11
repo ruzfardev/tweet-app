@@ -5,17 +5,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStateProvider } from "./context/GlobalContext";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <GlobalStateProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </GlobalStateProvider>
+      <QueryClientProvider client={queryClient}>
+        <GlobalStateProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </GlobalStateProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
   </React.StrictMode>
 );
 
