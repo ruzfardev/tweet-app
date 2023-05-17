@@ -31,9 +31,26 @@ export class ApiService {
         }
         return [];
     }
+    async getKeyMetrics(username: string | undefined): Promise<any> {
+        try {
+            return await axiosInstance.post('/KeyMetrics', {
+                "filterGroup": {
+                    "filters": [
+                        {
+                            "jsonProp": "politicianUsername",
+                            "operator": "Equal",
+                            "value": username
+                        }
+                    ],
+                    "groupOperator": "All"
+                }
+            });
+        }catch (e: any) {
+            message.error(e.message);
+        }
+    }
     async getLineGraphData(username: string | undefined): Promise<any> {
         try {
-            console.log(username);
             return await axiosInstance.post('/numberOfTweetsOverDaysByTopic', {
                 "filterGroup": {
                 "filters": [
@@ -50,7 +67,76 @@ export class ApiService {
             message.error(e.message);
         }
     }
-    async getBarChartData(username: string | undefined): Promise<any> {
-
+    async getHorizontalBarData(username: string | undefined): Promise<any> {
+        try {
+            return await axiosInstance.post('/topicSentimentScores', {
+                "filterGroup": {
+                    "filters": [
+                        {
+                            "jsonProp": "politicianUsername",
+                            "operator": "Equal",
+                            "value": username
+                        }
+                    ],
+                    "groupOperator": "All"
+                }
+            });
+        }catch (e: any) {
+            message.error(e.message);
+        }
+    }
+    async getBarGraphData(username: string | undefined): Promise<any> {
+        try {
+            return await axiosInstance.post('/topCitiesWithTweets', {
+                "filterGroup": {
+                    "filters": [
+                        {
+                            "jsonProp": "politicianUsername",
+                            "operator": "Equal",
+                            "value": username
+                        }
+                    ],
+                    "groupOperator": "All"
+                }
+            });
+        }catch (e: any) {
+            message.error(e.message);
+        }
+    }
+    async getPieChartData(username: string | undefined): Promise<any> {
+        try {
+            return await axiosInstance.post('/tweetsReliabilityLevels', {
+                "filterGroup": {
+                    "filters": [
+                        {
+                            "jsonProp": "politicianUsername",
+                            "operator": "Equal",
+                            "value": username
+                        }
+                    ],
+                    "groupOperator": "All"
+                }
+            });
+        }catch (e: any) {
+            message.error(e.message);
+        }
+    }
+    async getMapData(username: string | undefined): Promise<any> {
+        try {
+            return await axiosInstance.post('/numberOfTweetsByCities', {
+                "filterGroup": {
+                    "filters": [
+                        {
+                            "jsonProp": "politicianUsername",
+                            "operator": "Equal",
+                            "value": username
+                        }
+                    ],
+                    "groupOperator": "All"
+                }
+            });
+        }catch (e: any) {
+            message.error(e.message);
+        }
     }
 }

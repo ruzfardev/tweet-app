@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Card, Select, Space, Typography, Checkbox, Button, Skeleton} from "antd";
+import {Card, Select, Space, Typography, Checkbox, Button, Skeleton, Spin} from "antd";
 import { UserCard } from "../components/UserCard";
 import TweetCard from "../components/TweetCard";
 import { useGlobalState } from "../context/GlobalContext";
@@ -7,20 +7,26 @@ import {ApiService} from "../service";
 import {IPolitician} from "../model/politician.model";
 import {ITweet} from "../model/tweet.model";
 import {useQuery} from "@tanstack/react-query";
+import { ClearOutlined } from "@ant-design/icons";
 const Main = () => {
   const apiService = new ApiService();
   const { users, tweets, setUsers, setTweets } = useGlobalState();
   const [userSelection, setUserSelection] = useState<any[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<IPolitician[]>([]);
   const [filteredTweets, setFilteredTweets] = useState<ITweet[]>([]);
-
-
+  const [interactions, setInteractions] = useState<number>();
+  const [avgApproval, setAvgApproval] = useState<number>();
   const { isLoading: isUsersLoading, error} =  useQuery({
     queryKey: ['users'],
     queryFn: () => apiService.getUsers(),
     onSuccess: (users) => {
-      console.log(users);
       setUsers(users);
+      const options = users.map((user: IPolitician) => ({
+        label: user.name,
+        value: user.id,
+      }));
+      setUserSelection(options)
+      setAvgApproval(Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)))
     }
 
   })
@@ -29,7 +35,8 @@ const Main = () => {
       queryKey: ['tweets'],
       queryFn: () => apiService.getTweets(),
         onSuccess: (tweets) => {
-        setTweets( tweets );
+          setTweets( tweets );
+          setInteractions(tweets[0].totalCount);
         }
   })
 
@@ -73,12 +80,21 @@ const Main = () => {
     }
   };
   const handleUserSelectionChange = (value: any) => {
+    console.log(value);
+    if(!value) {
+        setFilteredUsers(users)
+        setFilteredTweets(tweets)
+        setAvgApproval(Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)))
+        setInteractions(tweets?.length)
+        return;
+    }
     const filteredUsers = users?.filter((user: IPolitician) => user.id === value);
     filteredUsers && setFilteredUsers(filteredUsers);
+    setAvgApproval(filteredUsers[0].approvalRate)
     const filteredTweets = tweets?.filter(
-      (tweet: any) => tweet.id === value
-    );
+      (tweet: any) => tweet.politicianName === value);
     filteredTweets && setFilteredTweets(filteredTweets);
+    setInteractions(filteredTweets?.length)
   };
   return (
     <section
@@ -129,15 +145,21 @@ const Main = () => {
           >
             <div className="box">
               <Typography.Title>
-                {tweets?.length || 0}
+                {
+                  (!isTweetsLoading && interactions )
+                    ? interactions
+                    : <Spin size={"large"} />
+                }
               </Typography.Title>
               <span>Interactions</span>
             </div>
             <div className="box">
               <Typography.Title>
-                {users &&
-                  Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1))
-                }%
+                {
+                  (!isUsersLoading && avgApproval )
+                    ? avgApproval + '%'
+                    : <Spin size={"large"} />
+                }
               </Typography.Title>
               <span>Avg.Approval</span>
             </div>
@@ -160,6 +182,10 @@ const Main = () => {
                 style={{ width: 200 }}
                 onChange={handleUserSelectionChange}
                 options={userSelection}
+                allowClear={true}
+                onSelect={(value) => {
+                  console.log(value);
+                }}
               />
             </Space>
             <Space direction="vertical">
@@ -172,7 +198,7 @@ const Main = () => {
         </Card>
       </div>
       <div className="main-content">
-        <div style={{ flex: "0 0 55%" }}>
+        <div style={{ flex: "0 0 50%" }}>
           <Typography.Title level={4}>Summary</Typography.Title>
           <div className="users-container">
             {!isUsersLoading ?
@@ -191,7 +217,7 @@ const Main = () => {
             }
           </div>
         </div>
-        <div style={{ flex: "0 0 42%" }}>
+        <div style={{ flex: "0 0 40%" }}>
           <Typography.Title level={4}>Latest Interactions</Typography.Title>
           <div className="tweet-container">
             {!isTweetsLoading ?

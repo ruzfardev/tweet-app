@@ -20,6 +20,7 @@ export const UserCard: FC<Props> = ({ politician, loading }) => {
         hoverable={true}
         style={{
           textAlign: "center",
+            padding: "15px, 8px",
           background: `linear-gradient(${politician.color} 30%, rgb(255, 255, 255) 0%)`,
         }}
       >
@@ -41,17 +42,22 @@ export const UserCard: FC<Props> = ({ politician, loading }) => {
             alignItems: "center",
           }}
         >
-          <div className="">
-            <Typography.Title level={4}>
+          <div className="text-rate">
+            <Typography.Title ellipsis={true}
+                              style={{display:"flex", flexDirection:"column", alignItems:"center"}}
+                              level={3}>
                 {politician?.interaction}
+                <span>INTERACTIONS</span>
             </Typography.Title>
-            <span>Tweets</span>
+
           </div>
-          <div className="">
-            <Typography.Title level={4}>{
-                politician?.approvalRate
-            }</Typography.Title>
-            <span>Avg.Approval</span>
+          <div className="text-rate">
+            <Typography.Title ellipsis={true}
+                              style={{display:"flex", flexDirection:"column", alignItems:"center"}}
+                              level={3}>
+                {politician?.approvalRate + "%"}
+                <span>AVG.APPROVALRATE</span>
+            </Typography.Title>
           </div>
         </div>
       </Card>

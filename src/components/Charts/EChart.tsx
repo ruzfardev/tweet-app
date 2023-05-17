@@ -1,31 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import malaysia from "../../assets/malaysia.json";
 
 
 interface IProps {
     resize?: boolean;
     data: any;
+    id: string;
+    loading?:boolean
 }
-export const EChart: React.FC<IProps> = ({resize, data}) => {
-    const chart = useRef<HTMLDivElement>(null);
-    const [chartEl, setChartEl] = useState<echarts.ECharts | null>(null);
+export const EChart: React.FC<IProps> = ({ resize, data, id, loading}) => {
+    const chartRef = useRef<HTMLDivElement>(null);
+    const [chartInstance, setChartInstance] = useState<echarts.ECharts | null>(null);
+    console.log(data)
     useEffect(() => {
+        const initializeChart = () => {
+            // @ts-ignore
+            const chart = echarts.init(chartRef.current as HTMLDivElement);
+            chart.setOption(data);
+            setChartInstance(chart);
+        };
 
-        if (resize && chartEl) {
-            chartEl.resize();
-            chartEl.showLoading();
+        if (resize && chartInstance) {
+            chartInstance.resize();
+            chartInstance.showLoading();
         }
 
-        if (!chartEl) {
-            const newChartEl = echarts.init(chart.current as HTMLDivElement);
-            newChartEl.setOption(data);
-            setChartEl(newChartEl);
-            newChartEl.hideLoading();
-        } else {
-            setChartEl(echarts.init(chart.current as HTMLDivElement));
+        if (!chartInstance) {
+            initializeChart();
         }
-    }, [chartEl]);
-    return (
-        <div ref={chart} style={{ width: '100%', height: '350px' }} />
-    );
+
+        return () => {
+            chartInstance?.dispose();
+        };
+    }, [resize, chartInstance]);
+
+    return <div id={id} ref={chartRef} style={{ width: '100%', height: '350px' }} />;
 };

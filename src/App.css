@@ -17,7 +17,7 @@
   margin-top: -20px;
 }
 .main-content{
-  width: 60%;
+  width: 65%;
   margin: 0 auto;
   display: flex;
   column-gap: 5px;
@@ -45,5 +45,12 @@
 }
 .margin-0{
   font-weight: 700 !important;
-  margin: 0;
+  margin: 0 !important;
+}
+.text-rate span{
+    font-size: 0.7rem;
+  padding: 10px;
+  word-break: break-word;
+  text-transform: uppercase;
+    color: #999;
 }

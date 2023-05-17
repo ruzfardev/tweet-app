@@ -30,9 +30,11 @@ function App() {
             politweets
           </Typography.Title>
         ) : (
-          <Button ghost size="large" icon={<LeftOutlined />}>
-            <Link to="/">Back</Link>
-          </Button>
+            <Link to="/">
+              <Button ghost size="large" icon={<LeftOutlined />}>
+                  Back
+              </Button>
+            </Link>
         )}
         <Menu
           theme="dark"

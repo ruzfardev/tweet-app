@@ -19,6 +19,7 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
       if (part.startsWith("@")) {
         return (
             <Text
+                key={index}
               style={{
                 color: "#1890ff",
                 cursor: "pointer",
@@ -47,18 +48,18 @@ const TweetCard: FC<Props> = ({ tweet, loading }) => {
         }}
       >
         <Text type="secondary">
-          {new Date(tweet.created).toLocaleTimeString() +
+          {new Date(tweet.createdDate).toLocaleTimeString() +
             "-" +
-            new Date(tweet.created).toLocaleDateString("en-US", {
+            new Date(tweet.createdDate).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
               year: "numeric",
             })}
         </Text>
-        <Avatar size={40} src={getUserAvatar(tweet.id)} />
+        <Avatar size={40} src={getUserAvatar(tweet.politicianName)} />
       </Space>
       <Text style={{ marginTop: "1rem" }}>
-        {renderContent(tweet.text, tweet.id)}
+        {renderContent(tweet.text, tweet.tweetId)}
       </Text>
       <p
         style={{

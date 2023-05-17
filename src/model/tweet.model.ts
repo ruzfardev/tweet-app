@@ -1,14 +1,14 @@
 export interface ITweet {
-    tweetId: number;
+    tweetId: string;
     userName: string;
+    politicianName: string;
     text: string;
-    created: string,
-    tweet_like_count: number,
-    tweet_retweet_count: number,
+    createdDate: string,
+    likeCount: number,
+    retweetCount: number,
     sentiment: number,
     city: string,
     topic: string,
     reliability: string,
-    country: string,
-    id: string,
+    totalCount: number,
 }

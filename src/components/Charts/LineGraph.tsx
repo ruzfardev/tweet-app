@@ -23,7 +23,7 @@ export const LineGraph:FC<any> = () => {
 
     return (
         <>
-            {isLoading ? <div>Loading...</div> : graphData && <Chart options={graphData}/>}
+            {graphData && <Chart loading={isLoading} id={"lineGraph"} options={graphData}/>}
         </>
     )
 }

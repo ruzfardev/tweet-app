@@ -1,31 +1,40 @@
-import React, { useEffect } from "react";
-import { Row, Col, Card, Avatar, Typography, Space } from "antd";
+import React, {ReactNode, useEffect} from "react";
+import {Row, Col, Card, Avatar, Typography, Space, Spin, Skeleton} from "antd";
 import { useGlobalState } from "../../context/GlobalContext";
 import { useParams } from "react-router-dom";
-import Chart from "../../components/Charts/Chart";
 import { ApiService } from "../../service";
-import {convertToLineGraphData, getUserAvatar} from "../../helpers";
-import {ILineGraph} from "../../model/ILineGraph";
+import {getUserAvatar} from "../../helpers";
 import {IPolitician} from "../../model/politician.model";
 import {LineGraph} from "../../components/Charts/LineGraph";
+import {HorizontalBarGraph} from "../../components/Charts/HorizontalBarGraph";
+import {BarGraph} from "../../components/Charts/BarGraph";
+import {Map} from "../../components/Charts/Map";
+import {useQuery} from "@tanstack/react-query";
+import {PieChart} from "../../components/Charts/PieChart";
+import {WordCloud} from "../../components/Charts/WordCloud";
+import {KetMetricsModel} from "../../model/ketMetrics.model";
 const { Meta } = Card;
 export const Profile = () => {
   const apiService = new ApiService();
   const { userName } = useParams();
   const { users } = useGlobalState();
-  const [lineGraphData, setLineGraphData] = React.useState<ILineGraph>();
-  const [selectedUser, setSelectedUser] = React.useState<IPolitician>({} as IPolitician);
+  const [keyMetrics, setKeyMetrics] = React.useState<KetMetricsModel>();
+  const [selectedUser, setSelectedUser] = React.useState<IPolitician | undefined>({} as IPolitician);
 
   useEffect(() => {
-    const user = users.find((user: IPolitician) => user.account === userName);
-    console.log(userName, user);
-    // @ts-ignore
+    // when the component mounts, scroll to the top of the page
+    window.scrollTo(0, 0);
+    const user = users.find((user: IPolitician) => user.id === userName);
     setSelectedUser(user);
-    // apiService.getLineGraphData().then((res) => {
-    //   setLineGraphData(convertToLineGraphData(res));
-    // });
   }, [users, userName]);
 
+  const {isLoading} = useQuery({
+    queryKey: ['keyMetrics', userName],
+    queryFn: () => apiService.getKeyMetrics(userName),
+    onSuccess: (data) => {
+      setKeyMetrics(data[0])
+    }
+  });
   return (
       <>
       <div className="profile">
@@ -39,9 +48,16 @@ export const Profile = () => {
                     <Typography.Title level={5} className="margin-0">
                       Total number of tweets
                     </Typography.Title>
-                    <Typography.Title level={2} className="margin-0">
-                      1,200
-                    </Typography.Title>
+                    {
+                      isLoading
+                        ? <Spin size="large" />
+                        :
+                          <>
+                            <Typography.Title level={2} className="margin-0">
+                                    {keyMetrics?.totalTweets}
+                            </Typography.Title>
+                          </>
+                    }
                   </Space>
                 </Card>
               </Col>
@@ -51,9 +67,16 @@ export const Profile = () => {
                     <Typography.Title level={5} className="margin-0">
                       Average number of retweets
                     </Typography.Title>
-                    <Typography.Title level={2} className="margin-0">
-                      1,200
-                    </Typography.Title>
+                    {
+                      isLoading
+                          ? <Spin size="large" />
+                          :
+                          <>
+                            <Typography.Title level={2} className="margin-0">
+                              {keyMetrics?.avgRetweets}
+                            </Typography.Title>
+                          </>
+                    }
                   </Space>
                 </Card>
               </Col>
@@ -63,9 +86,16 @@ export const Profile = () => {
                     <Typography.Title level={5} className="margin-0">
                       Average number of likes
                     </Typography.Title>
-                    <Typography.Title level={2} className="margin-0">
-                      5,200
-                    </Typography.Title>
+                    {
+                      isLoading
+                          ? <Spin size="large" />
+                          :
+                          <>
+                            <Typography.Title level={2} className="margin-0">
+                              {keyMetrics?.avgLikes}
+                            </Typography.Title>
+                          </>
+                    }
                   </Space>
                 </Card>
               </Col>
@@ -73,11 +103,18 @@ export const Profile = () => {
                 <Card bordered={false} style={{ width: 200 }}>
                   <Space direction="vertical">
                     <Typography.Title level={5} className="margin-0">
-                      Average number of replies
+                        Total number of topics
                     </Typography.Title>
-                    <Typography.Title level={2} className="margin-0">
-                      45%
-                    </Typography.Title>
+                    {
+                      isLoading
+                          ? <Spin size="large" />
+                          :
+                          <>
+                            <Typography.Title level={2} className="margin-0">
+                              {keyMetrics?.totalTopics}
+                            </Typography.Title>
+                          </>
+                    }
                   </Space>
                 </Card>
               </Col>
@@ -85,60 +122,82 @@ export const Profile = () => {
                 <Card bordered={false} style={{ width: 200 }}>
                   <Space direction="vertical">
                     <Typography.Title level={5} className="margin-0">
-                      Total number of countries
+                      Total number of cities
                     </Typography.Title>
-                    <Typography.Title level={2} className="margin-0">
-                      115
-                    </Typography.Title>
+                    {
+                      isLoading
+                          ? <Spin size="large" />
+                          :
+                          <>
+                            <Typography.Title level={2} className="margin-0">
+                              {keyMetrics?.totalCities}
+                            </Typography.Title>
+                          </>
+                    }
                   </Space>
                 </Card>
               </Col>
             </Row>
           </Col>
           <Col span={6} pull={18}>
-            <Card
-              bordered={false}
-              style={{
-                background: `linear-gradient(150deg, ${selectedUser?.color} 32%, rgb(255, 255, 255) 20%)`,
-              }}
-              loading={false}
-            >
-              <Meta
-                // avatar={
-                //   // <Avatar
-                //   //   style={{
-                //   //     border: "3px solid white",
-                //   //   }}
-                //   //   size={90}
-                //   //   src={
-                //   //   getUserAvatar(selectedUser?.id)
-                //   // }
-                //   // />
-                // }
-                title={selectedUser?.name}
-                description={selectedUser?.party}
-              />
-            </Card>
+            {
+              isLoading ?
+                  <Card >
+                    <Skeleton active avatar={{ size: 55 }} paragraph={{ rows: 1 }} />
+                  </Card>
+                    :
+                  <Card
+                      bordered={false}
+                      style={{
+                        background: `linear-gradient(90deg, ${keyMetrics?.color} 15%, rgb(255, 255, 255) 15%)`,
+                      }}
+                  >
+                    <Meta
+                        avatar={
+                          <Avatar
+                              style={{
+                                border: "3px solid white",
+                              }}
+                              size={90}
+                              src={
+                                  keyMetrics && getUserAvatar(keyMetrics.politicianId)
+                              }
+                          />
+                        }
+                        title={keyMetrics?.politicianName}
+                        description={keyMetrics?.politicianParty}
+                    />
+                  </Card>
+            }
           </Col>
-        </Row></div>
+        </Row>
+      </div>
         <Row
             style={{
               backgroundColor: "#e9e9e9",
-              padding: "0 30px",
+              padding: "30px",
             }}
             justify="center"
-
-            gutter={[50, 10]}>
-            <Col span={24}>
+            gutter={[30, 30]}
+        >
+            <Col span={8}>
               <LineGraph />
-              {/*{lineGraphData && <Chart options={lineGraphData}/>}*/}
-        </Col>
-        {/*<Col span={8}>*/}
-        {/*/!*<Chart/>*!/*/}
-        {/*</Col>*/}
-        {/*<Col span={8}>*/}
-        {/*/!*<Chart/>*!/*/}
-        {/*</Col>*/}
+            </Col>
+            <Col span={8}>
+              <HorizontalBarGraph key={1}/>
+            </Col>
+            <Col span={8}>
+              <BarGraph />
+            </Col>
+          <Col span={8}>
+            <Map/>
+          </Col>
+          <Col span={8}>
+            <WordCloud/>
+          </Col>
+            <Col span={8}>
+              <PieChart />
+            </Col>
         </Row>
         </>
   );
