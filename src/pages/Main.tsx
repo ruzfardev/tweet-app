@@ -85,7 +85,7 @@ const Main = () => {
         setFilteredUsers(users)
         setFilteredTweets(tweets)
         setAvgApproval(Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)))
-        setInteractions(tweets?.length)
+        setInteractions(tweets[0].totalCount);
         return;
     }
     const filteredUsers = users?.filter((user: IPolitician) => user.id === value);
