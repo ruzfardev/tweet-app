@@ -4,19 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cce4a98-ebad-45a7-8be3-69d7f40f59ae" name="Changes" comment="updated">
+    <list default="true" id="7cce4a98-ebad-45a7-8be3-69d7f40f59ae" name="Changes" comment="v2 added">
+      <change afterPath="$PROJECT_DIR$/src/components/Charts/ClusteredBarChart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Charts/MultiGraph.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Charts/StackedBarChart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/container/MetricsContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/container/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/BarGraph.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/BarGraph.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Charts/Chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/Chart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Charts/EChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/EChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/EChart.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/EMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/EMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/HorizontalBarGraph.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/LineGraph.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/PieChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/PieChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Charts/WordCloud.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Charts/WordCloud.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TweetCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/TweetCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/UserCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ketMetrics.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ketMetrics.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/tweet.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/tweet.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/chart.js/dist/types/index.d.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -25,6 +59,9 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="2PKB3fz0z2rmgHf2ADIiduFie2A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -35,19 +72,39 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Datamicron/twitter-santiment&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/imac_dm/Documents/tweet-app/node_modules/typescript/lib&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Program Files\\nodejs\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Datamicron\\twitter-santiment\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Datamicron\twitter-santiment\src\components\Charts" />
+      <recent name="D:\Datamicron\twitter-santiment\src\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Datamicron\twitter-santiment\src\components\ui\container" />
+      <recent name="D:\Datamicron\twitter-santiment\src\components\ui" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,6 +116,20 @@
       <workItem from="1683195714632" duration="5000" />
       <workItem from="1683524230608" duration="4859000" />
       <workItem from="1683548500198" duration="3801000" />
+      <workItem from="1683693049761" duration="8485000" />
+      <workItem from="1683708784930" duration="7707000" />
+      <workItem from="1683780540626" duration="23593000" />
+      <workItem from="1683867953197" duration="17385000" />
+      <workItem from="1684126684279" duration="8533000" />
+      <workItem from="1684212926507" duration="16920000" />
+      <workItem from="1684241189797" duration="9554000" />
+      <workItem from="1684321298987" duration="1735000" />
+      <workItem from="1684825021727" duration="746000" />
+      <workItem from="1685008175288" duration="6007000" />
+      <workItem from="1685508997844" duration="972000" />
+      <workItem from="1685509999326" duration="20383000" />
+      <workItem from="1685596117816" duration="6348000" />
+      <workItem from="1685697281512" duration="468000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1683542065249</created>
@@ -67,14 +138,44 @@
       <option name="project" value="LOCAL" />
       <updated>1683542065249</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="line graph added">
+      <created>1683807926813</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683807926813</updated>
+    </task>
+    <task id="LOCAL-00003" summary="profile finished">
+      <created>1684308710081</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684308710082</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed">
+      <created>1684322272940</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684322272940</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="line graph added" />
+    <MESSAGE value="profile finished" />
+    <MESSAGE value="fixed" />
+    <MESSAGE value="v2 added" />
+    <option name="LAST_COMMIT_MESSAGE" value="v2 added" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,21 +1,27 @@
-import React from 'react'
-import {Card, Image} from "antd";
-import {useParams} from "react-router-dom";
-import {getUserWordCloud} from "../../helpers";
+import React from "react";
+import { Card } from "antd";
+import { useParams } from "react-router-dom";
+import { getUserWordCloud } from "../../helpers";
 
 export const WordCloud = () => {
-    const {userName} = useParams();
-    return (
-        <Card bordered={true} title={'Word Cloud by topic'}>
-            <img alt={'wordCloud'} style={
-                {
-                    width:'100%',
-                    height: '290px',
-                    objectFit: 'cover'
-                }
-            }
-                 src={getUserWordCloud(userName)}
-            />
-        </Card>
-    )
-}
+  const { userName } = useParams();
+  return (
+    <Card
+      hoverable
+      bordered={true}
+      title={"Word Cloud by topic"}
+      style={{
+        height: "350px",
+      }}
+    >
+      <img
+        alt={"wordCloud"}
+        style={{
+          width: "100%",
+          objectFit: "cover",
+        }}
+        src={getUserWordCloud(userName)}
+      />
+    </Card>
+  );
+};

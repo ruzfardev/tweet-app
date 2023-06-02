@@ -3,32 +3,33 @@ import { useQuery } from "@tanstack/react-query";
 import { ApiService } from "../../service";
 import Chart from "./Chart";
 import { useParams } from "react-router-dom";
-import { IBarGraph } from "../../model/IBarGraph";
+import { IHorizontalBarGraph } from "../../model/IHorizontalBarGraph";
 import { ChartMaker } from "../../libs";
 interface IProps {
   username: string;
 }
-export const BarGraph: FC<any> = () => {
+export const StackedBarChart: FC<any> = () => {
   const { userName } = useParams();
   const apiService = new ApiService();
-  const [graphData, setGraphData] = useState<IBarGraph>();
+  const [graphData, setGraphData] = useState<IHorizontalBarGraph>();
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["multiGraphData", userName],
-    queryFn: () => apiService.getMultiGraphData(userName, "multiGraphData"),
+    queryKey: ["horizontalBarGraph", userName],
+    queryFn: () => apiService.getStackedBarData(userName),
     onSuccess: (data) => {
       setGraphData(data);
     },
   });
-  const multiChartMaker: ChartMaker<"bar"> = new ChartMaker<"bar">({
+
+  const stackedBarChartMaker = new ChartMaker<"bar">({
     type: "bar",
-    chartType: "multiChart",
+    chartType: "stackedBar",
     data: graphData,
-    isMulti: true,
+    isMulti: false,
   });
 
   return (
     <Chart loading={isLoading}>
-      {graphData && multiChartMaker.makeChart()}
+      {graphData && stackedBarChartMaker.makeChart()}
     </Chart>
   );
 };

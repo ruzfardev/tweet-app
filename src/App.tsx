@@ -6,7 +6,6 @@ import { Button, Menu, Typography, Layout } from "antd";
 import Main from "./pages/Main";
 import { Profile } from "./pages/Profile/Profile";
 
-
 const { Header } = Layout;
 function App() {
   const { pathname } = useLocation();
@@ -30,11 +29,11 @@ function App() {
             politweets
           </Typography.Title>
         ) : (
-            <Link to="/">
-              <Button ghost size="large" icon={<LeftOutlined />}>
-                  Back
-              </Button>
-            </Link>
+          <Link to="/">
+            <Button ghost size="large" icon={<LeftOutlined />}>
+              Back
+            </Button>
+          </Link>
         )}
         <Menu
           theme="dark"
@@ -60,7 +59,6 @@ function App() {
           ]}
         />
       </Header>
-
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/:userName" element={<Profile />}></Route>

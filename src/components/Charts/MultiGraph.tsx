@@ -8,20 +8,20 @@ import { ChartMaker } from "../../libs";
 interface IProps {
   username: string;
 }
-export const BarGraph: FC<any> = () => {
+export const MultiGraph: FC<any> = () => {
   const { userName } = useParams();
   const apiService = new ApiService();
   const [graphData, setGraphData] = useState<IBarGraph>();
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["multiGraphData", userName],
-    queryFn: () => apiService.getMultiGraphData(userName, "multiGraphData"),
+    queryKey: ["multiGraphData2", userName],
+    queryFn: () => apiService.getMultiGraphData(userName, "multiGraphData2"),
     onSuccess: (data) => {
       setGraphData(data);
     },
   });
   const multiChartMaker: ChartMaker<"bar"> = new ChartMaker<"bar">({
     type: "bar",
-    chartType: "multiChart",
+    chartType: "multiChart2",
     data: graphData,
     isMulti: true,
   });

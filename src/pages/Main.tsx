@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {Card, Select, Space, Typography, Checkbox, Button, Skeleton, Spin} from "antd";
-import { UserCard } from "../components/UserCard";
-import TweetCard from "../components/TweetCard";
+import {
+  Card,
+  Select,
+  Space,
+  Typography,
+  Checkbox,
+  Button,
+  Skeleton,
+  Spin,
+} from "antd";
+import { UserCard } from "../components/ui/UserCard";
+import TweetCard from "../components/ui/TweetCard";
 import { useGlobalState } from "../context/GlobalContext";
-import {ApiService} from "../service";
-import {IPolitician} from "../model/politician.model";
-import {ITweet} from "../model/tweet.model";
-import {useQuery} from "@tanstack/react-query";
+import { ApiService } from "../service";
+import { IPolitician } from "../model/politician.model";
+import { ITweet } from "../model/tweet.model";
+import { useQuery } from "@tanstack/react-query";
 import { ClearOutlined } from "@ant-design/icons";
 const Main = () => {
   const apiService = new ApiService();
@@ -16,8 +25,8 @@ const Main = () => {
   const [filteredTweets, setFilteredTweets] = useState<ITweet[]>([]);
   const [interactions, setInteractions] = useState<number>();
   const [avgApproval, setAvgApproval] = useState<number>();
-  const { isLoading: isUsersLoading, error} =  useQuery({
-    queryKey: ['users'],
+  const { isLoading: isUsersLoading, error } = useQuery({
+    queryKey: ["users"],
     queryFn: () => apiService.getUsers(),
     onSuccess: (users) => {
       setUsers(users);
@@ -25,20 +34,25 @@ const Main = () => {
         label: user.name,
         value: user.id,
       }));
-      setUserSelection(options)
-      setAvgApproval(Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)))
-    }
+      setUserSelection(options);
+      setAvgApproval(
+        Math.floor(
+          users
+            ?.map((user: IPolitician) => user.approvalRate)
+            .reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)
+        )
+      );
+    },
+  });
 
-  })
-
-  const { isLoading: isTweetsLoading, error: tweetsError} =  useQuery({
-      queryKey: ['tweets'],
-      queryFn: () => apiService.getTweets(),
-        onSuccess: (tweets) => {
-          setTweets( tweets );
-          setInteractions(tweets[0].totalCount);
-        }
-  })
+  const { isLoading: isTweetsLoading, error: tweetsError } = useQuery({
+    queryKey: ["tweets"],
+    queryFn: () => apiService.getTweets(),
+    onSuccess: (tweets) => {
+      setTweets(tweets);
+      setInteractions(tweets[0].totalCount);
+    },
+  });
 
   const handleTimeChange = (value: any) => {
     switch (value) {
@@ -81,20 +95,29 @@ const Main = () => {
   };
   const handleUserSelectionChange = (value: any) => {
     console.log(value);
-    if(!value) {
-        setFilteredUsers(users)
-        setFilteredTweets(tweets)
-        setAvgApproval(Math.floor(users?.map((user: IPolitician) => user.approvalRate).reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)))
-        setInteractions(tweets[0].totalCount);
-        return;
+    if (!value) {
+      setFilteredUsers(users);
+      setFilteredTweets(tweets);
+      setAvgApproval(
+        Math.floor(
+          users
+            ?.map((user: IPolitician) => user.approvalRate)
+            .reduce((a: number, b: number) => a + b, 0) / (users?.length || 1)
+        )
+      );
+      setInteractions(tweets[0].totalCount);
+      return;
     }
-    const filteredUsers = users?.filter((user: IPolitician) => user.id === value);
+    const filteredUsers = users?.filter(
+      (user: IPolitician) => user.id === value
+    );
     filteredUsers && setFilteredUsers(filteredUsers);
-    setAvgApproval(filteredUsers[0].approvalRate)
+    setAvgApproval(filteredUsers[0].approvalRate);
     const filteredTweets = tweets?.filter(
-      (tweet: any) => tweet.politicianName === value);
+      (tweet: any) => tweet.politicianName === value
+    );
     filteredTweets && setFilteredTweets(filteredTweets);
-    setInteractions(filteredTweets?.length)
+    setInteractions(filteredTweets?.length);
   };
   return (
     <section
@@ -126,7 +149,8 @@ const Main = () => {
           }}
           ellipsis={{ rows: 3 }}
         >
-          High-level picture of the interactions and sentiment towards the leaders of the top Malaysia political parties
+          High-level picture of the interactions and sentiment towards the
+          leaders of the top Malaysia political parties
         </Typography.Paragraph>
         <Card
           style={{
@@ -145,21 +169,21 @@ const Main = () => {
           >
             <div className="box">
               <Typography.Title>
-                {
-                  (!isTweetsLoading && interactions )
-                    ? interactions
-                    : <Spin size={"large"} />
-                }
+                {!isTweetsLoading && interactions ? (
+                  interactions
+                ) : (
+                  <Spin size={"large"} />
+                )}
               </Typography.Title>
               <span>Interactions</span>
             </div>
             <div className="box">
               <Typography.Title>
-                {
-                  (!isUsersLoading && avgApproval )
-                    ? avgApproval + '%'
-                    : <Spin size={"large"} />
-                }
+                {!isUsersLoading && avgApproval ? (
+                  avgApproval + "%"
+                ) : (
+                  <Spin size={"large"} />
+                )}
               </Typography.Title>
               <span>Avg.Approval</span>
             </div>
@@ -201,27 +225,38 @@ const Main = () => {
         <div style={{ flex: "0 0 50%" }}>
           <Typography.Title level={4}>Summary</Typography.Title>
           <div className="users-container">
-            {!isUsersLoading ?
-              (filteredUsers.length > 0
-                ? filteredUsers?.map((user, index: number) => {
-                    return (
-                      <UserCard loading={isUsersLoading} key={index} politician={user} />
-                    );
-                  })
-                : users?.map((user, index: number) => {
-                    return (
-                      <UserCard loading={isUsersLoading} key={index} politician={user} />
-                    );
-                  }))
-              : <Skeleton active avatar/>
-            }
+            {!isUsersLoading ? (
+              filteredUsers.length > 0 ? (
+                filteredUsers?.map((user, index: number) => {
+                  return (
+                    <UserCard
+                      loading={isUsersLoading}
+                      key={index}
+                      politician={user}
+                    />
+                  );
+                })
+              ) : (
+                users?.map((user, index: number) => {
+                  return (
+                    <UserCard
+                      loading={isUsersLoading}
+                      key={index}
+                      politician={user}
+                    />
+                  );
+                })
+              )
+            ) : (
+              <Skeleton active avatar />
+            )}
           </div>
         </div>
         <div style={{ flex: "0 0 40%" }}>
           <Typography.Title level={4}>Latest Interactions</Typography.Title>
           <div className="tweet-container">
-            {!isTweetsLoading ?
-              (filteredTweets.length > 0
+            {!isTweetsLoading
+              ? filteredTweets.length > 0
                 ? filteredTweets?.map((tweet, index: number) => {
                     return (
                       <TweetCard
@@ -239,15 +274,21 @@ const Main = () => {
                         tweet={tweet}
                       />
                     );
-                  }))
-            :
-            // render 6 skeleton cards
-            Array(6).fill(0).map((_, index: number) => {
-              return(
-                  <Skeleton paragraph={true} active avatar key={index} loading={isTweetsLoading}/>
-              )
-            })
-            }
+                  })
+              : // render 6 skeleton cards
+                Array(6)
+                  .fill(0)
+                  .map((_, index: number) => {
+                    return (
+                      <Skeleton
+                        paragraph={true}
+                        active
+                        avatar
+                        key={index}
+                        loading={isTweetsLoading}
+                      />
+                    );
+                  })}
           </div>
         </div>
       </div>
